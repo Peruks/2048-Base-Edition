@@ -1,13 +1,20 @@
 {
-    "name": "2048 Base Edition",
-    "icon": "https://2048-base-edition.vercel.app/icon.png",
-    "homeUrl": "https://2048-base-edition.vercel.app/",
-    "splashImage": "https://2048-base-edition.vercel.app/icon.png",
-    "splashBackgroundColor": "#000000",
-    "webhooks": [],
-    "apps": {
-        "android": "",
-        "ios": "",
-        "web": "https://2048-base-edition.vercel.app/"
+    "frame": {
+        "name": "2048 Base Edition",
+        "version": "1",
+        "iconUrl": "https://2048-base-edition.vercel.app/icon.png",
+        "homeUrl": "https://2048-base-edition.vercel.app",
+        "imageUrl": "https://2048-base-edition.vercel.app/image.png",
+        "splashImageUrl": "https://2048-base-edition.vercel.app/splash.png",
+        "splashBackgroundColor": "#6200EA",
+        "webhookUrl": "https://2048-base-edition.vercel.app/api/webhook",
+        "description": "A Base-themed 2048 puzzle game you can play directly inside Farcaster",
+        "primaryCategory": "games",
+        "subtitle": "Merge tiles. Chase 2048. Play in Base style"
+    },
+    "accountAssociation": {
+        "header": "eyJmaWQiOjIzNjUwNSwidHlwZSI6ImF1dGgiLCJrZXkiOiIweEFiMDc4MGI0NGQ1QTEyODRFOWZjZTAwY0Y4YzQxNTFjODRGOWEzNjQifQ",
+        "payload": "eyJkb21haW4iOiIyMDQ4LWJhc2UtZWRpdGlvbi52ZXJjZWwuYXBwIn0",
+        "signature": "lvgsVqeDkHyCMN0KjBB3hCQkPUPcPDeNkUiYB8HFRi5DHMTpzeP/GS8tTSVTI3wfSct4bY8CogYV+XKyNZwTwxw="
     }
 }
