@@ -6,7 +6,7 @@
         "homeUrl": "https://2048-base-edition.vercel.app",
         "imageUrl": "https://2048-base-edition.vercel.app/image.png",
         "splashImageUrl": "https://2048-base-edition.vercel.app/splash.png",
-        "splashBackgroundColor": "#6200EA",
+        "splashBackgroundColor": "#000000",
         "webhookUrl": "https://2048-base-edition.vercel.app/api/webhook",
         "description": "A Base-themed 2048 puzzle game you can play directly inside Farcaster",
         "primaryCategory": "games",
