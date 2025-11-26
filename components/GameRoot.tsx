@@ -61,7 +61,25 @@ export default function GameRoot() {
                     move("RIGHT");
                     break;
             }
-            {/* Header */ }
+        };
+
+        window.addEventListener("keydown", handleKeyDown);
+        return () => window.removeEventListener("keydown", handleKeyDown);
+    }, [move, gameOver]);
+
+    const handleShare = () => {
+        const shareText = encodeURIComponent(`I scored ${score} in 2048 Base Edition! Can you beat me?`);
+        const shareEmbed = encodeURIComponent(`https://2048-base-edition.vercel.app/?score=${score}`);
+        const url = `https://warpcast.com/~/compose?text=${shareText}&embeds[]=${shareEmbed}`;
+
+        sdk.actions.openUrl(url);
+    };
+
+    if (!initialized) return null;
+
+    return (
+        <div className="flex flex-col items-center gap-6 w-full max-w-md mx-auto">
+            {/* Header */}
             <div className="flex items-center justify-between w-full">
                 <div>
                     <h1 className="text-3xl font-bold text-base-blue">2048</h1>
@@ -70,7 +88,7 @@ export default function GameRoot() {
                 <ScoreBoard score={score} bestScore={bestScore} />
             </div>
 
-            {/* Game Board */ }
+            {/* Game Board */}
             <div className="relative" ref={boardRef}>
                 <Board grid={grid} onMove={move} />
                 <Overlay
@@ -81,7 +99,7 @@ export default function GameRoot() {
                 />
             </div>
 
-            {/* Controls / Footer */ }
+            {/* Controls / Footer */}
             <div className="flex gap-4 w-full justify-center">
                 <button
                     onClick={startNewGame}
@@ -101,6 +119,6 @@ export default function GameRoot() {
                 Merge tiles to reach 2048. <br />
                 Use arrow keys or swipe to move.
             </p>
-        </div >
+        </div>
     );
 }
