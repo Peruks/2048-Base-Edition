@@ -1,13 +1,13 @@
 {
     "name": "2048 Base Edition",
-    "icon": "https://2048-base.vercel.app/icon.png",
-    "homeUrl": "https://2048-base.vercel.app/",
-    "splashImage": "https://2048-base.vercel.app/icon.png",
+    "icon": "https://2048-base-edition.vercel.app/icon.png",
+    "homeUrl": "https://2048-base-edition.vercel.app/",
+    "splashImage": "https://2048-base-edition.vercel.app/icon.png",
     "splashBackgroundColor": "#000000",
     "webhooks": [],
     "apps": {
         "android": "",
         "ios": "",
-        "web": "https://2048-base.vercel.app/"
+        "web": "https://2048-base-edition.vercel.app/"
     }
 }
