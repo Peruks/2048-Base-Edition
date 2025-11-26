@@ -61,40 +61,7 @@ export default function GameRoot() {
                     move("RIGHT");
                     break;
             }
-        };
-
-        window.addEventListener("keydown", handleKeyDown);
-        return () => window.removeEventListener("keydown", handleKeyDown);
-    }, [move, gameOver]);
-
-    const handleShare = async () => {
-        if (!boardRef.current) return;
-
-        try {
-            const canvas = await html2canvas(boardRef.current, {
-                backgroundColor: "#000000",
-                scale: 2,
-            });
-
-            const dataUrl = canvas.toDataURL("image/png");
-            console.log("Generated share image", dataUrl.slice(0, 50) + "...");
-
-            // Construct share text
-            const text = `I scored ${score} in 2048 Base Edition! Can you beat me?`;
-
-            // For this task, we'll just simulate the "Share Score" button action.
-            alert("Share image generated! (In production, this would open a share dialog)");
-
-        } catch (e) {
-            console.error("Share failed", e);
-        }
-    };
-
-    if (!initialized) return null;
-
-    return (
-        <div className="flex flex-col items-center gap-6 w-full max-w-md mx-auto">
-            {/* Header */}
+            {/* Header */ }
             <div className="flex items-center justify-between w-full">
                 <div>
                     <h1 className="text-3xl font-bold text-base-blue">2048</h1>
@@ -103,7 +70,7 @@ export default function GameRoot() {
                 <ScoreBoard score={score} bestScore={bestScore} />
             </div>
 
-            {/* Game Board */}
+            {/* Game Board */ }
             <div className="relative" ref={boardRef}>
                 <Board grid={grid} onMove={move} />
                 <Overlay
@@ -114,7 +81,7 @@ export default function GameRoot() {
                 />
             </div>
 
-            {/* Controls / Footer */}
+            {/* Controls / Footer */ }
             <div className="flex gap-4 w-full justify-center">
                 <button
                     onClick={startNewGame}
@@ -134,6 +101,6 @@ export default function GameRoot() {
                 Merge tiles to reach 2048. <br />
                 Use arrow keys or swipe to move.
             </p>
-        </div>
+        </div >
     );
 }
