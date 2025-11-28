@@ -25,6 +25,19 @@ export function use2048() {
         setHasWonOnce(false);
     }, []);
 
+    // Helper to validate grid structure
+    const isValidGrid = (g: any): g is Grid => {
+        if (!Array.isArray(g) || g.length !== 4) return false;
+        return g.every((row) =>
+            Array.isArray(row) &&
+            row.length === 4 &&
+            row.every((tile) =>
+                tile === null ||
+                (typeof tile === "object" && typeof tile.id === "string" && typeof tile.value === "number")
+            )
+        );
+    };
+
     // Load state
     useEffect(() => {
         if (typeof window === "undefined") return;
@@ -36,14 +49,14 @@ export function use2048() {
             const savedState = localStorage.getItem(STORAGE_KEY);
             if (savedState) {
                 const parsed = JSON.parse(savedState);
-                // Validate grid structure roughly
-                if (Array.isArray(parsed.grid) && parsed.grid.length === 4) {
+                if (isValidGrid(parsed.grid)) {
                     setGrid(parsed.grid);
-                    setScore(parsed.score);
-                    setGameOver(parsed.gameOver);
-                    setWon(parsed.won);
-                    setHasWonOnce(parsed.hasWonOnce || false);
+                    setScore(parsed.score || 0);
+                    setGameOver(!!parsed.gameOver);
+                    setWon(!!parsed.won);
+                    setHasWonOnce(!!parsed.hasWonOnce);
                 } else {
+                    console.warn("Invalid saved grid, resetting.");
                     startNewGame();
                 }
             } else {
