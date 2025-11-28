@@ -29,12 +29,12 @@ export function use2048() {
     useEffect(() => {
         if (typeof window === "undefined") return;
 
-        const savedBest = localStorage.getItem(HIGH_SCORE_KEY);
-        if (savedBest) setBestScore(parseInt(savedBest, 10));
+        try {
+            const savedBest = localStorage.getItem(HIGH_SCORE_KEY);
+            if (savedBest) setBestScore(parseInt(savedBest, 10));
 
-        const savedState = localStorage.getItem(STORAGE_KEY);
-        if (savedState) {
-            try {
+            const savedState = localStorage.getItem(STORAGE_KEY);
+            if (savedState) {
                 const parsed = JSON.parse(savedState);
                 // Validate grid structure roughly
                 if (Array.isArray(parsed.grid) && parsed.grid.length === 4) {
@@ -46,10 +46,11 @@ export function use2048() {
                 } else {
                     startNewGame();
                 }
-            } catch (e) {
+            } else {
                 startNewGame();
             }
-        } else {
+        } catch (e) {
+            console.warn("Failed to load state:", e);
             startNewGame();
         }
         setInitialized(true);
@@ -58,10 +59,14 @@ export function use2048() {
     // Save state
     useEffect(() => {
         if (!initialized) return;
-        localStorage.setItem(STORAGE_KEY, JSON.stringify({ grid, score, gameOver, won, hasWonOnce }));
-        if (score > bestScore) {
-            setBestScore(score);
-            localStorage.setItem(HIGH_SCORE_KEY, score.toString());
+        try {
+            localStorage.setItem(STORAGE_KEY, JSON.stringify({ grid, score, gameOver, won, hasWonOnce }));
+            if (score > bestScore) {
+                setBestScore(score);
+                localStorage.setItem(HIGH_SCORE_KEY, score.toString());
+            }
+        } catch (e) {
+            console.warn("Failed to save state:", e);
         }
     }, [grid, score, gameOver, won, hasWonOnce, bestScore, initialized]);
 
