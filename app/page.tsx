@@ -1,5 +1,10 @@
-import GameRoot from "../components/GameRoot";
+import dynamic from "next/dynamic";
 import ErrorBoundary from "../components/ErrorBoundary";
+
+const GameRoot = dynamic(() => import("../components/GameRoot"), {
+    ssr: false,
+    loading: () => <div className="text-white">Loading game...</div>,
+});
 
 export default function Home() {
     return (
